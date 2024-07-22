@@ -1,0 +1,26 @@
+{
+  "name": "post-task",
+  "version": "1.0.0",
+  "description": "A polyfill for the Scheduler API with a pre-configured progressively-enhanced function which allows for task division.",
+  "type": "module",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo 'no tests yet'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adevinta/post-task.git"
+  },
+  "keywords": [
+    "scheduler",
+    "postTask",
+    "INP",
+    "yield"
+  ],
+  "author": "Daniel Arthur Gallagher <daniel.gallagher@adevinta.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adevinta/post-task/issues"
+  },
+  "homepage": "https://github.com/adevinta/post-task#readme"
+}
