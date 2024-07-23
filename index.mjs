@@ -35,7 +35,7 @@ const priorityCallbackDelays = {
  * @param {SchedulerPriority} priority The priority of the task, following the Scheduler API.
  * @returns {Promise<void>} A promise that resolves when the task is executed, in case it needs to be tracked.
  */
-const queueTask = (task, priority) => {
+const postTask = (task, priority) => {
   if (typeof window !== "undefined") {
     // Prefer to use the Scheduler API, if available.
     if ("scheduler" in window) {
@@ -73,4 +73,4 @@ const queueTask = (task, priority) => {
   }
 };
 
-export default queueTask;
+export default postTask;
