@@ -4,6 +4,7 @@
   "description": "A polyfill for the Scheduler API with a pre-configured progressively-enhanced function which allows for task division.",
   "type": "module",
   "main": "index.mjs",
+  "types": "index.d.ts",
   "scripts": {
     "test": "echo 'no tests yet'"
   },
