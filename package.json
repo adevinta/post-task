@@ -1,28 +1,31 @@
 {
-  "name": "post-task",
-  "version": "1.0.1",
-  "description": "A polyfill for the Scheduler API with a pre-configured progressively-enhanced function which allows for task division.",
-  "type": "module",
-  "main": "index.mjs",
-  "types": "index.d.ts",
-  "scripts": {
-    "test": "echo 'no tests yet'"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/adevinta/post-task.git"
-  },
-  "keywords": [
-    "scheduler",
-    "postTask",
-    "INP",
-    "yield"
-  ],
-  "author": "Daniel Arthur Gallagher <daniel.gallagher@adevinta.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/adevinta/post-task/issues"
-  },
+	"name": "post-task",
+	"version": "1.0.1",
+	"description": "A polyfill for the Scheduler API with a pre-configured progressively-enhanced function which allows for task division.",
+	"type": "module",
+	"exports": {
+		"types": "./index.d.ts",
+		"import": "./index.mjs",
+		"require": "./index.cjs"
+	},
+	"scripts": {
+		"test": "echo 'no tests yet'"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/adevinta/post-task.git"
+	},
+	"keywords": [
+		"scheduler",
+		"postTask",
+		"INP",
+		"yield"
+	],
+	"author": "Daniel Arthur Gallagher <daniel.gallagher@adevinta.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/adevinta/post-task/issues"
+	},
 	"homepage": "https://github.com/adevinta/post-task#readme",
 	"devDependencies": {
 		"prettier": "3.4.2"
