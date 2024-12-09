@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/adevinta/post-task/issues"
   },
-  "homepage": "https://github.com/adevinta/post-task#readme"
+	"homepage": "https://github.com/adevinta/post-task#readme",
+	"devDependencies": {
+		"prettier": "3.4.2"
+	}
 }

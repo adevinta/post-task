@@ -11,9 +11,9 @@
  * @type {PriorityConfigurationFallback}
  */
 const priorityIdleTimeouts = {
-  background: 1000,
-  "user-visible": 100,
-  "user-blocking": 50,
+	background: 1000,
+	"user-visible": 100,
+	"user-blocking": 50,
 };
 
 /**
@@ -21,9 +21,9 @@ const priorityIdleTimeouts = {
  * @type {PriorityConfigurationFallback}
  */
 const priorityCallbackDelays = {
-  background: 150,
-  "user-visible": 0,
-  "user-blocking": 0,
+	background: 150,
+	"user-visible": 0,
+	"user-blocking": 0,
 };
 
 /** @typedef {() => void} Task */
@@ -36,41 +36,41 @@ const priorityCallbackDelays = {
  * @returns {Promise<void>} A promise that resolves when the task is executed, in case it needs to be tracked.
  */
 const postTask = (task, priority) => {
-  if (typeof window !== "undefined") {
-    // Prefer to use the Scheduler API, if available.
-    if ("scheduler" in window) {
-      // @ts-expect-error The scheduler API is not yet in the TypeScript definitions.
-      return scheduler.postTask(task, {
-        priority,
-      });
-    }
-    // Otherwise, if possible, queue the tracking in browser idle time.
-    else if ("requestIdleCallback" in window) {
-      return new Promise((resolve) => {
-        requestIdleCallback(
-          () => {
-            task();
-            resolve();
-          },
-          { timeout: priorityIdleTimeouts[priority] }
-        );
-      });
-    }
-    // Otherwise set a timeout with the appropriate delay
-    else {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          task();
-          resolve();
-        }, priorityCallbackDelays[priority]);
-      });
-    }
-  } else {
-    // On Node.js, just run the task immediately.
-    // This should be an edge case, but we will not suppress tasks.
-    task();
-    return Promise.resolve();
-  }
+	if (typeof window !== "undefined") {
+		// Prefer to use the Scheduler API, if available.
+		if ("scheduler" in window) {
+			// @ts-expect-error The scheduler API is not yet in the TypeScript definitions.
+			return scheduler.postTask(task, {
+				priority,
+			});
+		}
+		// Otherwise, if possible, queue the tracking in browser idle time.
+		else if ("requestIdleCallback" in window) {
+			return new Promise((resolve) => {
+				requestIdleCallback(
+					() => {
+						task();
+						resolve();
+					},
+					{ timeout: priorityIdleTimeouts[priority] },
+				);
+			});
+		}
+		// Otherwise set a timeout with the appropriate delay
+		else {
+			return new Promise((resolve) => {
+				setTimeout(() => {
+					task();
+					resolve();
+				}, priorityCallbackDelays[priority]);
+			});
+		}
+	} else {
+		// On Node.js, just run the task immediately.
+		// This should be an edge case, but we will not suppress tasks.
+		task();
+		return Promise.resolve();
+	}
 };
 
 export default postTask;

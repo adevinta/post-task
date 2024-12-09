@@ -29,6 +29,6 @@ import postTask from "post-task";
 
 // ...
 postTask(() => {
-  trackEvent("something-happened");
+	trackEvent("something-happened");
 }, "background");
 ```
