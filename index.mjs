@@ -39,7 +39,6 @@ const postTask = (task, priority) => {
 	if (typeof window !== "undefined") {
 		// Prefer to use the Scheduler API, if available.
 		if ("scheduler" in window) {
-			// @ts-expect-error The scheduler API is not yet in the TypeScript definitions.
 			return scheduler.postTask(task, {
 				priority,
 			});
