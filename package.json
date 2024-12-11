@@ -9,7 +9,8 @@
 		"require": "./index.cjs"
 	},
 	"scripts": {
-		"test": "echo 'no tests yet'"
+		"test": "echo 'no tests yet'",
+		"prepublishOnly": "sed 's/export default/module.exports =/g' ./index.mjs > index.cjs"
 	},
 	"repository": {
 		"type": "git",
