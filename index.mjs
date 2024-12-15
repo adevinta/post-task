@@ -43,7 +43,7 @@ const postTask = (task, priority) => {
 				priority,
 			});
 		}
-		// Otherwise, if possible, queue the tracking in browser idle time.
+		// Otherwise, if possible, queue the callback in browser idle time.
 		else if ("requestIdleCallback" in window) {
 			return new Promise((resolve) => {
 				requestIdleCallback(
@@ -55,7 +55,7 @@ const postTask = (task, priority) => {
 				);
 			});
 		}
-		// Otherwise set a timeout with the appropriate delay
+		// Otherwise set a timeout with the appropriate delay.
 		else {
 			return new Promise((resolve) => {
 				setTimeout(() => {
@@ -72,4 +72,42 @@ const postTask = (task, priority) => {
 	}
 };
 
+/**
+ * Approximates the
+ * [`scheduler.yield`](https://developer.mozilla.org/en-US/docs/Web/API/Scheduler/yield)
+ * method in the `Scheduler` API when it is not available.
+ * [As stated in the documentation the priority is `"user-visible"`](https://developer.mozilla.org/en-US/docs/Web/API/Scheduler/yield)
+ * and the implementation aligns with the timeouts already defined for `postTask`.
+ * The name of the function is `pauseTask` to avoid conflicts with the `yield` keyword.
+ * @returns {Promise<void>}
+ */
+const pauseTask = () => {
+	if (typeof window === "undefined") {
+		// Use the Scheduler API if available.
+		if ("scheduler" in window && "yield" in window.scheduler) {
+			return window.scheduler.yield();
+		}
+		// Otherwise, if possible, queue a callback in browser idle time.
+		else if ("requestIdleCallback" in window) {
+			return new Promise((resolve) => {
+				requestIdleCallback(() => {
+					resolve();
+				}, priorityIdleTimeouts["user-visible"]);
+			});
+		}
+		// Otherwise set a timeout with the appropriate delay.
+		else {
+			return new Promise((resolve) => {
+				setTimeout(() => {
+					resolve();
+				}, priorityCallbackDelays["user-visible"]);
+			});
+		}
+	} else {
+		// On Node.js, just resolve a Promise immediately.
+		return Promise.resolve();
+	}
+};
+
 export default postTask;
+export { pauseTask };
