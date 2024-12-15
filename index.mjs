@@ -10,21 +10,21 @@
  * The task will be executed as soon as possible, in idle time, but guaranteed within the timeout.
  * @type {PriorityConfigurationFallback}
  */
-const priorityIdleTimeouts = {
+const priorityIdleTimeouts = Object.freeze({
 	background: 1000,
 	"user-visible": 100,
 	"user-blocking": 50,
-};
+});
 
 /**
  * The timeouts used for setTimeout, which define the delay before the task is executed.
  * @type {PriorityConfigurationFallback}
  */
-const priorityCallbackDelays = {
+const priorityCallbackDelays = Object.freeze({
 	background: 150,
 	"user-visible": 0,
 	"user-blocking": 0,
-};
+});
 
 /** @typedef {() => void} Task */
 
