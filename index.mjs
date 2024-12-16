@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 /**
  * The priority of the task: these are the priorities of the Scheduler API.
  * @typedef {('background' | 'user-visible' | 'user-blocking')} SchedulerPriority

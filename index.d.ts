@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 declare module "post-task" {
 	/**
 	 * Queues an arbitrary task to be executed in the browser, with the given priority.
