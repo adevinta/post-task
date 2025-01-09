@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: MIT
+// Copyright © 2024 Adevinta
 
 /**
  * The priority of the task: these are the priorities of the Scheduler API.
@@ -12,20 +13,20 @@
  * The task will be executed as soon as possible, in idle time, but guaranteed within the timeout.
  * @type {PriorityConfigurationFallback}
  */
-const priorityIdleTimeouts = Object.freeze({
-	background: 1000,
-	"user-visible": 100,
-	"user-blocking": 50,
+const priorityIdleTimeouts = Object.create(null, {
+	background: { value: 1000, enumerable: true },
+	"user-visible": { value: 100, enumerable: true },
+	"user-blocking": { value: 50, enumerable: true },
 });
 
 /**
  * The timeouts used for setTimeout, which define the delay before the task is executed.
  * @type {PriorityConfigurationFallback}
  */
-const priorityCallbackDelays = Object.freeze({
-	background: 150,
-	"user-visible": 0,
-	"user-blocking": 0,
+const priorityCallbackDelays = Object.create(null, {
+	background: { value: 150, enumerable: true },
+	"user-visible": { value: 0, enumerable: true },
+	"user-blocking": { value: 0, enumerable: true },
 });
 
 /** @typedef {() => void} Task */

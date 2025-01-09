@@ -1,0 +1,29 @@
+name: "Test"
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+# Only allow one workflow run at a time per PR
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  test:
+    name: "Test"
+    runs-on: ["ubuntu-latest"]
+    env:
+      TZ: "Europe/Rome"
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v4
+
+      - name: "Set up Node.js"
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
+          cache: "npm"
+
+      - name: "Test the package"
+        run: npm cit --quiet
+        timeout-minutes: 5

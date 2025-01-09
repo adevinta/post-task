@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: MIT
+// Copyright © 2024 Adevinta
 
 declare module "post-task" {
 	/**

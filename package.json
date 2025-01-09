@@ -1,7 +1,7 @@
 {
 	"name": "post-task",
 	"version": "1.1.3",
-	"description": "A polyfill for the Scheduler API with a pre-configured progressively-enhanced function which allows for task division.",
+	"description": "A polyfill for the Scheduler API with a pre-configured progressively-enhanced function helps to split long-running tasks into chunks.",
 	"type": "module",
 	"exports": {
 		"types": "./index.d.ts",
