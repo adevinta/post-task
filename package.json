@@ -9,7 +9,7 @@
 		"require": "./index.cjs"
 	},
 	"scripts": {
-		"test": "echo 'no tests yet'",
+		"test": "node --check index.mjs",
 		"prepublishOnly": "sed 's/export default/module.exports =/g' ./index.mjs > index.cjs"
 	},
 	"repository": {
@@ -22,7 +22,10 @@
 		"INP",
 		"yield"
 	],
-	"author": "Daniel Arthur Gallagher <daniel.gallagher@adevinta.com>",
+	"author": {
+		"name": "Daniel Arthur Gallagher",
+		"email": "daniel.gallagher@adevinta.com"
+	},
 	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/adevinta/post-task/issues"
