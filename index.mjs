@@ -69,7 +69,7 @@ const postTask = (task, priority) => {
 	// Scheduler API is not available, set a timeout with the appropriate delay.
 	else {
 		return new Promise((resolve) => {
-			setTimeout(() => {
+			globalThis.setTimeout(() => {
 				task();
 				resolve();
 			}, priorityCallbackDelays[priority]);
