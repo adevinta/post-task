@@ -50,4 +50,3 @@ postTask(() => {
 
 This package is equally available as ESM and CJS and has a single, default
 export.
-The code is identical between the formats except on the exporting itself.
