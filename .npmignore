@@ -1,2 +1,4 @@
-.prettierrc.json
 .github
+
+.prettierrc.json
+.prettierignore

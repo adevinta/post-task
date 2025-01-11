@@ -1,26 +1,39 @@
 # post-task
 
-A pre-configured progressively-enhancement utility function based on the Scheduler API.
+A pre-configured progressively-enhancement utility function based on the
+[Scheduler API](https://developer.mozilla.org/en-US/docs/Web/API/Prioritized_Task_Scheduling_API).
 
-If the scheduler API is available, use it.
-If not, but `requestIdleCallback` is, then use that. Otherwise set a timeout.
+If the Scheduler API is available, use it. Otherwise set a timeout as a
+fallback.
 
-The Scheduler API relies on browser heuristics, while the fallbacks wait and
-call back (in the case of `requestIdleCallback`, as soon as possible in idle time
-and definitely at the timeout, for `setTimeout` only at the timeout).
-
-If not in a browser environment, call back immediately.
+The Scheduler API relies on browser heuristics, while the fallback waits and
+calls back only after a certain time has passed.
 
 The tasks all return a `Promise<void>` since the `scheduler.postTask` returns
-one, but without any return value.
+one.
 
-The API is preconfigured with defaults to schedule tasks, based on the
-[`scheduler.postTask` API](https://developer.mozilla.org/en-US/docs/Web/API/Scheduler/postTask).
+The interface re-exposes the values accepted for the
+[`scheduler.postTask` API](https://developer.mozilla.org/en-US/docs/Web/API/Scheduler/postTask)
+and forwards them through when that API is available.
 
-This function is useful for breaking up chunks of work and freeing the main
-thread, particularly important when focusing on the
+The fallbacks are configured as following:
+
+| Priority          | Timeout delay (ms) |
+| ----------------- | ------------------ |
+| `"user-blocking"` | 0                  |
+| `"user-visible"`  | 0                  |
+| `"background"`    | 150                |
+
+There is one exception: if a priority of `"user-blocking"` is passed, and the
+Scheduler API is not available, the fallback will be
+[`queueMicrotask`](https://developer.mozilla.org/en-US/docs/Web/API/Window/queueMicrotask)
+if that function
+[is available, which it usually will be, including in Node.js](https://developer.mozilla.org/en-US/docs/Web/API/Window/queueMicrotask#browser_compatibility).
+
+This function is useful for breaking up chunks of work and allowing the event
+loop to cycle, which is particularly important when focusing on the
 [Interaction to Next Paint](https://web.dev/articles/inp)
-web vital.
+web vital and of course the smooth interaction which it tries to measure.
 
 ## Use
 
@@ -29,7 +42,7 @@ import postTask from "post-task";
 
 // ...
 postTask(() => {
-	trackEvent("something-happened");
+  trackEvent("something-happened");
 }, "background");
 ```
 
@@ -37,4 +50,3 @@ postTask(() => {
 
 This package is equally available as ESM and CJS and has a single, default
 export.
-The code is identical between the formats except on the exporting itself.

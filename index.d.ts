@@ -3,8 +3,17 @@
 
 declare module "post-task" {
 	/**
-	 * Queues an arbitrary task to be executed in the browser, with the given priority.
-	 * Allows breaking up the work of potentially long-running tasks to avoid blocking the main thread.
+	 * Queues an arbitrary task to be scheduled for execution with the given
+	 * priority.
+	 *
+	 * Allows the discrete and prioritised queuing of tasks which if run serially
+	 * would block the main thread, but which do not have to be run immediately.
+	 *
+	 * @param task The callback to be executed.
+	 * @param priority The priority of the task, following the
+	 * Scheduler API.
+	 * @returns A promise that resolves when the task is executed,
+	 * in case it needs to be tracked.
 	 */
 	export default function postTask(
 		task: () => void,
