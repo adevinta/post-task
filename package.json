@@ -1,28 +1,21 @@
 {
-	"name": "@dagher/post-task",
-	"license": "MIT",
-	"type": "module",
+	"name": "post-task",
+	"version": "1.2.0",
 	"description": "A polyfill for the Scheduler API with a pre-configured progressively-enhanced function helps to split long-running tasks into chunks.",
-	"version": "1.0.0-dev.1",
+	"type": "module",
 	"exports": {
 		"types": "./index.d.ts",
-		"import": "./index.mjs"
+		"import": "./index.mjs",
+		"require": "./index.cjs"
 	},
 	"scripts": {
 		"pretest": "node --check index.mjs",
-		"test": "node --disable-warning=ExperimentalWarning ./index.spec.mjs"
+		"test": "node --disable-warning=ExperimentalWarning ./index.spec.mjs",
+		"prepublishOnly": "sed 's/export default/module.exports =/g' ./index.mjs > index.cjs"
 	},
-	"devDependencies": {
-		"prettier": "3.4.2"
-	},
-	"packageManager": "npm@11.0.0+sha512.11dff29565d2297c74e7c594a9762581bde969f0aa5cbe6f5b3644bf008a16c065ece61094d9ffbb81125be38df8e1ba43eb8244b3d30c61eb797e9a2440e3ec",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/danieleloscozzese/post-task.git"
-	},
-	"homepage": "https://github.com/danieleloscozzese/post-task#readme",
-	"bugs": {
-		"url": "https://github.com/danieleloscozzese/post-task/issues"
+		"url": "git+https://github.com/adevinta/post-task.git"
 	},
 	"keywords": [
 		"scheduler",
@@ -32,7 +25,14 @@
 	],
 	"author": {
 		"name": "Daniel Arthur Gallagher",
-		"email": "npm@danielarthurgallagher.dev",
-		"url": "https://danielarthurgallagher.dev"
+		"email": "daniel.gallagher@adevinta.com"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/adevinta/post-task/issues"
+	},
+	"homepage": "https://github.com/adevinta/post-task#readme",
+	"devDependencies": {
+		"prettier": "3.4.2"
 	}
 }

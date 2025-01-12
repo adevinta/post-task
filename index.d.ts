@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: MIT
 // Copyright © 2024 Adevinta
-// Copyright © 2025 Daniel Arthur Gallagher
 
-declare module "@dagher/post-task" {
+declare module "post-task" {
 	/**
 	 * Queues an arbitrary task to be scheduled for execution with the given
 	 * priority.
