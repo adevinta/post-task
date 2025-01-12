@@ -6,13 +6,11 @@
 	"version": "1.0.0",
 	"exports": {
 		"types": "./index.d.ts",
-		"import": "./index.mjs",
-		"require": "./index.cjs"
+		"import": "./index.mjs"
 	},
 	"scripts": {
 		"pretest": "node --check index.mjs",
-		"test": "node --disable-warning=ExperimentalWarning ./index.spec.mjs",
-		"prepublishOnly": "sed 's/export default/module.exports =/g' ./index.mjs > index.cjs"
+		"test": "node --disable-warning=ExperimentalWarning ./index.spec.mjs"
 	},
 	"devDependencies": {
 		"prettier": "3.4.2"
