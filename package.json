@@ -3,7 +3,7 @@
 	"license": "MIT",
 	"type": "module",
 	"description": "A polyfill for the Scheduler API with a pre-configured progressively-enhanced function helps to split long-running tasks into chunks.",
-	"version": "1.0.0",
+	"version": "1.0.0-dev.1",
 	"exports": {
 		"types": "./index.d.ts",
 		"import": "./index.mjs"
