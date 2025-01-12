@@ -1,4 +1,4 @@
-# post-task
+# @dagher/post-task
 
 A pre-configured progressively-enhancement utility function based on the
 [Scheduler API](https://developer.mozilla.org/en-US/docs/Web/API/Prioritized_Task_Scheduling_API).
@@ -38,15 +38,10 @@ web vital and of course the smooth interaction which it tries to measure.
 ## Use
 
 ```js
-import postTask from "post-task";
+import postTask from "@dagher/post-task";
 
 // ...
 postTask(() => {
   trackEvent("something-happened");
 }, "background");
 ```
-
-## Formats
-
-This package is equally available as ESM and CJS and has a single, default
-export.
